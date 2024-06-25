@@ -45,8 +45,8 @@
 <meta property="og:description" content="aHang的个人博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2024-06-23T16:43:26.191Z">
-<meta property="article:modified_time" content="2024-06-23T16:43:26.191Z">
+<meta property="article:published_time" content="2024-06-25T08:16:08.721Z">
+<meta property="article:modified_time" content="2024-06-25T08:16:08.721Z">
 <meta property="article:author" content="aHang">
 <meta property="article:tag" content="aHang">
 <meta name="twitter:card" content="summary">
@@ -1793,17 +1793,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: "env",
     cdn: {"js":{"app":"/js/app.js","parallax":"/js/plugins/parallax.js","rightMenu":"/js/plugins/rightMenu.js","rightMenus":"/js/plugins/rightMenus.js","sites":"/js/plugins/tags/sites.js","friends":"/js/plugins/tags/friends.js","contributors":"/js/plugins/tags/contributors.js","search":"/js/search/hexo.js"},"css":{"style":"/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1719299980359),
+    lastupdate: new Date(1719304836835),
     sidebar: {
-      for_page: ["blogger","category","tagcloud","donate"],
-      for_post: ["toc"],
+      for_page: ["blogger","category","tagcloud","lastupdate","webinfo"],
+      for_post: ["toc","category","tagcloud"],
       webinfo: {
         lastupd: {
           enable: true,
           friendlyShow: true
         },
         runtime: {
-          data: "2020/01/01",
+          data: "2024/6/24",
           unit: "天"
         }
       }
@@ -2221,7 +2221,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <!-- Custom Files bodyBegin end-->
     <!-- front-matter body_begin begin -->
     <!-- front-matter body_begin end -->
-    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur show" style='opacity: 0' >
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
   <div class='container'>
   <div id='wrapper'>
     <div class='nav-sub'>
@@ -2560,7 +2560,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper category search' style="display: none;">
+      <div id="half" class='cover-wrapper category search' style="display: ;">
         
   <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.us/gh/HmEJ/images@main/compress-background.jpg"></div>
 
@@ -2680,6 +2680,64 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
   
 
+  
+    
+    
+      
+  
+  <section class="widget category desktop pjax">
+    
+  <header>
+    
+      <a href='categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/nginx/" href="/categories/nginx/"
+            active-action="action-categoriesnginx"
+            ><div class='name'>nginx</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" href="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"
+            active-action="action-categoriesE58685E7BD91E7A9BFE9808F"
+            ><div class='name'>内网穿透</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget tagcloud desktop pjax">
+    
+  <header>
+    
+      <a href='tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/frp/" style="font-size: 14px; color: #999">frp</a> <a href="/tags/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 14px; color: #999">正向代理</a>
+    </div>
+  </section>
+
+
+    
+  
+
 
 <div class="widget-sticky pjax">
 
@@ -2697,14 +2755,6 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -2751,14 +2801,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     // header
     var l_header=document.getElementById("l_header");
     
-    l_header.classList.add("show");
+    l_header.classList.remove("show");
     
     
       // cover
       var cover_wrapper=document.querySelector('#l_cover .cover-wrapper');
       var scroll_down=document.getElementById('scroll-down');
-      cover_wrapper.id="none";
-      cover_wrapper.style.display="none";
+      cover_wrapper.id="half";
+      cover_wrapper.style.display="";
       scroll_down.style.display="none";
     
   
@@ -2825,7 +2875,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © 2024-2026</a> <br> 本站由hexo强力驱动 | 备案号…</p>
+        <p><a href="/">Copyright © 2024-2026</a> <br> 本站由hexo强力驱动</p>
 
         </div>
       
@@ -3386,7 +3436,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"aHang's Blog","url":"https://me.ahang.icu/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/","sameAs":["https://github.com/volantis-x"],"description":"aHang的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://me.ahang.icu/","name":"aHang's Blog"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"aHang's Blog","url":"https://me.ahang.icu/","keywords":"aHang","description":"aHang的个人博客","author":{"@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/","description":"aHang的个人博客"},"publisher":{"@type":"Organization","name":"aHang's Blog","url":"https://me.ahang.icu/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://me.ahang.icu?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"所有分类","description":"aHang的个人博客","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://me.ahang.icu/categories/index.html"},"author":{"@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/"},"publisher":{"@type":"Organization","name":"aHang's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://me.ahang.icu/categories/index.html","wordCount":0,"datePublished":"2024-06-23T16:43:26.191Z","dateModified":"2024-06-23T16:43:26.191Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"aHang's Blog","url":"https://me.ahang.icu/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/","sameAs":["https://github.com/volantis-x"],"description":"aHang的个人博客"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://me.ahang.icu/","name":"aHang's Blog"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"aHang's Blog","url":"https://me.ahang.icu/","keywords":"aHang","description":"aHang的个人博客","author":{"@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/","description":"aHang的个人博客"},"publisher":{"@type":"Organization","name":"aHang's Blog","url":"https://me.ahang.icu/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://me.ahang.icu?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"所有分类","description":"aHang的个人博客","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://me.ahang.icu/categories/index.html"},"author":{"@type":"Person","name":"aHang","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://me.ahang.icu/"},"publisher":{"@type":"Organization","name":"aHang's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://me.ahang.icu/categories/index.html","wordCount":0,"datePublished":"2024-06-25T08:16:08.721Z","dateModified":"2024-06-25T08:16:08.721Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
