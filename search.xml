@@ -5,6 +5,33 @@
     
     <entry>
       
+        <title>搭建git服务</title>
+      
+      <link href="/2024/07/07/article4/"/>
+      <url>/2024/07/07/article4/</url>
+      
+        <content type="html"><![CDATA[<p>记录一下搭建git服务的过程（简单版）</p><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h2><p>第一步，创建一个新的用户，是为了便于权限管理</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br></pre></td></tr></table></figure><p>可以通过 <code>cat /etc/passwd</code> 查看当前系统的用户</p><h2 id="添加ssh公钥"><a href="#添加ssh公钥" class="headerlink" title="添加ssh公钥"></a>添加ssh公钥</h2><p>第二步，将客户端机器的ssh公钥（位于用户目录下的 .ssh 目录中）添加到服务器用户的 <code>.ssh/authorized_keys</code> 中。如果没有的话新建这个文件。</p><p>这一步的主要目的是为了能让客户端机器可以通过git访问服务器。</p><p>试着通过 <code>ssh git@&lt;服务器ip或域名&gt;</code> 来访问服务器，如果这里公钥添加成功了，是可以直接访问的。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> .ssh &amp;&amp; <span class="built_in">cd</span> .ssh</span><br><span class="line"><span class="built_in">touch</span> authorized_keys</span><br></pre></td></tr></table></figure><h2 id="初始化一个远端仓库"><a href="#初始化一个远端仓库" class="headerlink" title="初始化一个远端仓库"></a>初始化一个远端仓库</h2><p>在 ~ 下新建一个远端仓库，通过 <code>git init --bare</code> 来初始化。</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> test.git &amp;&amp; <span class="built_in">cd</span> test.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure><h2 id="推送文件到远端仓库"><a href="#推送文件到远端仓库" class="headerlink" title="推送文件到远端仓库"></a>推送文件到远端仓库</h2><p>在客户端机器上克隆远端仓库：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@&lt;ip/domain&gt;:test.git</span><br></pre></td></tr></table></figure><p>进行一些修改，然后推送。</p><hr><p>这样就实现了一个简易的git服务器了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 自建服务 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>win上超好用的包管理工具-scoop</title>
       
       <link href="/2024/06/26/article3/"/>
