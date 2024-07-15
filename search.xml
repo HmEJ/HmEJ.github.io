@@ -15,14 +15,14 @@
       
       <categories>
           
-          <category> git </category>
+          <category> 运维 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 自建服务 </tag>
+            <tag> git </tag>
             
         </tags>
       
@@ -71,12 +71,14 @@
       
       <categories>
           
-          <category> nginx </category>
+          <category> 运维 </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> nginx </tag>
             
             <tag> 正向代理 </tag>
             
@@ -98,12 +100,14 @@
       
       <categories>
           
-          <category> frp </category>
+          <category> 运维 </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> frp </tag>
             
             <tag> 内网穿透 </tag>
             
