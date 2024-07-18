@@ -5,6 +5,33 @@
     
     <entry>
       
+        <title>git checkout检出文件</title>
+      
+      <link href="/2024/07/18/article5/"/>
+      <url>/2024/07/18/article5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>git checkout的作用通常有两个：</p><ul><li>切换到指定分支或者commit</li><li>从指定分支或commit中恢复文件到当前工作目录</li></ul><p>第一个作用大家都很清楚，通过 <code>git checkout &lt;branch&gt;|&lt;commit id&gt;</code> 很轻松能做到。本文重点记录第二个作用，也就是检出文件的作用。</p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>我学习项目的时候通常喜欢在README.md中记录笔记。然后现在我希望将当前项目的版本回退到前一个版本，但是同时我又希望只保留当前版本的 README.md中的新增笔记内容。</p><p>如果直接使用 <code>git revert &lt;commit id&gt;</code>  那么会直接恢复到前一个版本，但是随之而来的，我的新增的笔记内容会消失。使用 <code>git reset</code> 也是一样。下方git树图示将展示我希望git树的变化:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前git树：</span></span><br><span class="line">a (HEAD -&gt; main)</span><br><span class="line">|</span><br><span class="line">b</span><br><span class="line">|</span><br><span class="line">c</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">希望的git树：(回退版本，但是保留特定文件)</span></span><br><span class="line">b (HEAD -&gt; main)</span><br><span class="line">|</span><br><span class="line">c</span><br></pre></td></tr></table></figure><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>通过 <code>git checkout</code> 检出文件的功能，可以实现此目的。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt; -- &lt;file&gt; ...</span><br></pre></td></tr></table></figure><p>新建一个临时分支，这个分支保留了主分支最新的提交。然后在主分支执行回滚操作，回滚到指定的版本。然后通过<code>git checkout</code> 的文件检出功能，将之前的临时分支中最新的文件内容检出到当前分支。就实现了 ”版本回退但是保留特定文件最新状态“ 的目的。</p><p>具体流程如下：</p><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol><li><p>新建一个临时分支，该分支会保存当前分支的所有最新提交</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b temp-branch</span><br></pre></td></tr></table></figure><p>此时，我们的git树会像这样：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前git树：</span></span><br><span class="line">a temp-branch(HEAD -&gt; temp-branch)</span><br><span class="line">|/</span><br><span class="line">b</span><br><span class="line">|</span><br><span class="line">c</span><br></pre></td></tr></table></figure></li><li><p>此时temp-branch相当于main分支的备份。我们现在可以放心的回滚main分支的提交了。回滚提交到指定的版本：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到main分支的最新提交（a提交）</span></span><br><span class="line">git checkout main</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重置HEAD到b</span></span><br><span class="line">git reset --hard b </span><br></pre></td></tr></table></figure><p>此时，我们的git树会像这样：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前git树：</span></span><br><span class="line">a temp-branch</span><br><span class="line">|/</span><br><span class="line">b (HEAD -&gt; main)</span><br><span class="line">|</span><br><span class="line">c</span><br></pre></td></tr></table></figure></li><li><p>此时README文件中的内容也一同回滚到b的版本了，但是别担心，我们可以使用<code>git checkout</code> 指令来恢复文件。</p><p>还记得<code>temp-branch</code>分支吗？他是main分支最新提交的备份，该分支中保存了a提交中的最新内容。因此，我们使用<code>git checkout</code> 来从<code>temp-branch</code>分支中恢复内容：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将temp-branch分支中的README.md检出到当前版本中</span></span><br><span class="line">git checkout temp-branch -- README.md</span><br></pre></td></tr></table></figure><p>假如现在我改变了想法，我除了想保留README.md，还想保留之前版本的所有yml文件，那么可以这样写：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout temp-branch -- README.md $(find ./ -name &#x27;*.yml&#x27;)</span><br></pre></td></tr></table></figure><p>完成这一切后，删除这个临时分支（它已经发挥了它的作用）。我们的目的达到了。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -d temp-branch</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      
         <title>搭建git服务</title>
       
       <link href="/2024/07/07/article4/"/>
